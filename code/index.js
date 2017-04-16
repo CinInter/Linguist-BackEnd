@@ -13,7 +13,7 @@ app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
 
 dbExchange.addTablesToDB();
-rateExchange.loadRates(tools.rate_file_path);
+//rateExchange.loadRates(tools.rate_file_path);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
@@ -102,7 +102,7 @@ app.post('/update', function (req, res) {
   								"first_name"	: first_name	,
   					 			"last_name"		: last_name 	,
   					 			"phone_number"	: phone_number	,
-                  "phone_rate" 	: parseFloat(rateExchange.getRateForANumber(phone_number)),
+                  //"phone_rate" 	: parseFloat(rateExchange.getRateForANumber(phone_number)),
                   "translation_fees":translation_fees,
   					 			"profile" 		: profile		,
   					 			"credit"	: credit 	};
