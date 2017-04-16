@@ -41,6 +41,7 @@ app.post('/register', function (req, res) {
 								            "password"	: password	};
 
   //dbExchange.insert(tools.requestType.AUTHENTIFICATION,parameter,res);
+  console.log(req);
   dbExchange.insert(tools.requestType.USER,parameter,res)
 });
 
@@ -449,7 +450,7 @@ app.get('/', function (req, res) {
                             "languages"   : null      };
   onFinishedSession(token,duration);
   
-  res.status(200).json({"success": true });
+  res.status(200).json({"success": "faissal" });
 
 /*
   dbExchange.isAnElement(tools.requestType.IDENTIFICATON,parameter_token,res,function(id_user){

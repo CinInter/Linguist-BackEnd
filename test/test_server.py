@@ -3,7 +3,7 @@ import json
 import unirest
 from users import data
 
-SERVER_URL="https://faissal-simple-server.herokuapp.com/"
+SERVER_URL="https://linguist-backend.herokuapp.com/"
 
 data_dumped			= json.dumps(data) 
 data_in_json_format = json.loads(data_dumped)
@@ -121,9 +121,9 @@ class TestStringMethods(unittest.TestCase):
 if __name__ == '__main__':
 	suite = unittest.TestSuite()
 	suite.addTest(TestStringMethods('test_signup'))
-	suite.addTest(TestStringMethods('test_register'))
-	suite.addTest(TestStringMethods('test_register_user_didnt_sign_up'))
-	suite.addTest(TestStringMethods('test_login_user'))
-	suite.addTest(TestStringMethods('test_update_user'))
-	suite.addTest(TestStringMethods('test_add_languages_for_users'))
+	#suite.addTest(TestStringMethods('test_register'))
+	#suite.addTest(TestStringMethods('test_register_user_didnt_sign_up'))
+	#suite.addTest(TestStringMethods('test_login_user'))
+	#suite.addTest(TestStringMethods('test_update_user'))
+	#suite.addTest(TestStringMethods('test_add_languages_for_users'))
 	unittest.TextTestRunner(verbosity=2).run(suite)
