@@ -127,9 +127,11 @@ function insertUser(parameter,res) {
 			done();
 			if (err){
 				console.error(err);
+				console.error("error");
 				res.status(500).json({success: false, data: err});
 			}
 			else{
+				console.error("successful");
 				res.status(200).json({"success": true, "data": "authentificated"}); 
 			}
 		});
