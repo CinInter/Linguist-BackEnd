@@ -48,6 +48,7 @@ function addUserTableToDB() {
 						'credit				real 		,'+
 						'id 				serial		 '+
 						');', function(err, result) {
+			console.log('LOG INFO - dbExchange.js : user_table table is added');
 			done();
 		});
 	});
@@ -61,6 +62,7 @@ function addAuthentificationTokenTableToDB() {
 						'token				char(36)    ,'+
 						'id 				serial		 '+
 						');', function(err, result) {
+			console.log('LOG INFO - dbExchange.js : authentification_user_table table is added');
 			done();
 		});
 	});
@@ -73,6 +75,7 @@ function addIdentificationTokenTableToDB() {
 						'token				char(36)    ,'+
 						'id 				serial		 '+
 						');', function(err, result) {
+			console.log('LOG INFO - dbExchange.js : identification_user_table table is added');
 			done();
 		});
 	});
@@ -89,6 +92,7 @@ function addSessionTokenTableToDB() {
 						'token					char(36),'+
 						'id 					serial	 '+
 						');', function(err, result) {
+			console.log('LOG INFO - dbExchange.js : session_token_table table is added');
 			done();
 		});
 	});
@@ -102,6 +106,7 @@ function addLanguageTableToDB() {
 						'fluency			integer     ,'+
 						'id 				serial		 '+
 						');', function(err, result) {
+			console.log('LOG INFO - dbExchange.js : language_table table is added');
 			done();
 		});
 	});
