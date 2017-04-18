@@ -102,7 +102,7 @@ function addLanguageTableToDB() {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		client.query(	'create table if not exists language_table ('+
 						'id_of_user 		integer		,'+
-						'language			varchar(36)    ,'+
+						'language			varchar(36) ,'+
 						'fluency			integer     ,'+
 						'id 				serial		 '+
 						');', function(err, result) {
@@ -117,22 +117,15 @@ function insertAuthentificationToken(parameter,res) {
 	var password		= parameter.password;
 	var token 			= tools.generateToken();
 
-	var conString 	= process.env.DATABASE_URL;
-	var client 		= new pg.Client(conString);
-	client.connect();
-	/*var query = client.query('insert into authentification_user_table values ($1,$2,$3);',[email,password,token]);
-	
-	query.on("end", function (result) {
-		client.end(); 
-		res.status(200).json({"success": true, "token": token}); 
-	});*/
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		client.query('insert into authentification_user_table values ($1,$2,$3);',[email,password,token], function(err, result) {
 			done();
 			if (err) {
+				console.log('LOG EROR - dbExchange.js : There is an error in adding the email '+ email);
 				console.error(err);
 				res.status(500).json({success: false, data: err});
 			} else{ 
+				tools.util.log('LOG INFO - dbExchange.js : The email ' + email + ' is added correctly');
 				res.status(200).json({"success": true, "token": token}); 
 			}
 		});
@@ -147,8 +140,9 @@ function insertIdentificationToken(parameter,res) {
 		client.query('insert into identification_user_table values ($1,$2);',[id,token], function(err, result) {
 			done();
 			if (err) {
+				console.log('LOG EROR - dbExchange.js : There is an error in in data base');
 				console.error(err);
-				res.status(200).json({"success": false, "data": "Error in data base"});
+				res.status(500).json({"success": false, "data": "Error in data base"});
 			} else{ 
 				res.status(200).json({"success": true, "token": token}); 
 			}
@@ -164,8 +158,8 @@ function insertUser(parameter,res) {
 		client.query('insert into user_table (email,password,credit) values ($1,$2,0);',[email,password], function(err, result) {
 			done();
 			if (err){
+				console.log('LOG EROR - dbExchange.js : There is an error in adding the user '+ email);
 				console.error(err);
-				console.error("error");
 				res.status(500).json({success: false, data: err});
 			}
 			else{
@@ -185,9 +179,11 @@ function insertLanguage(parameter,res) {
 		client.query('insert into language_table values ($1,$2,$3);',[id,language,fluency], function(err, result) {
 			done();
 			if (err) {
+				console.log('LOG EROR - dbExchange.js : There is an error in adding the language '+ language);
 				console.error(err);
 				res.status(500).json({success: false, data: err});
 			} else{ 
+				tools.util.log('LOG INFO - dbExchange.js : The language ' + language + ' is added correctly');
 				res.status(200).json({"success": true, "data": "added"}); 
 			}
 		});
@@ -200,8 +196,8 @@ function insertSession(parameter,res,callback) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		client.query('insert into session_token_table values ($1,$2,$3,$4,$5,$6);',[parameter.user_id,parameter.translator_id,parameter.translation_fees,parameter.user_phone_cost,parameter.translator_phone_cost,token], function(err, result) {
 			done();
-
 			if (err) {
+				console.log('LOG EROR - dbExchange.js : There is an error in in data base');
 				console.error(err);
 				res.status(500).json({success: false, data: err});
 			} else{ 
