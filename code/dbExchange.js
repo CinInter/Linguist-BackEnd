@@ -163,7 +163,6 @@ function insertUser(parameter,res) {
 				res.status(500).json({success: false, data: err});
 			}
 			else{
-				console.error("successful");
 				res.status(200).json({"success": true, "data": "authentificated"}); 
 			}
 		});
