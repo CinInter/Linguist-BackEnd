@@ -14,7 +14,8 @@
     "pg": "4.x",
     "body-parser":"1.15.2",
     "nodemailer":"2.6.4",
-    "request":"2.79.0"
+    "request":"2.79.0",
+    "twilio":"2.11.1"
   },
   "repository": {
     "type": "git",
