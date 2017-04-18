@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 dbExchange.addTablesToDB();
 //rateExchange.loadRates(tools.rate_file_path);
-rateExchange.loadRates('./rates.csv');
+rateExchange.loadRates('rates.csv');
 var client = twilio("AC1cd2df05d94d3c79efc1b53da08e6bfa", "2ecc00df9bafcc8ba5f70a75d212b58c");
 
 app.listen(app.get('port'), function() {
