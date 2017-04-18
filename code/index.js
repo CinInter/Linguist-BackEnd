@@ -13,7 +13,7 @@ app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
 
 dbExchange.addTablesToDB();
-//rateExchange.loadRates(tools.rate_file_path);
+rateExchange.loadRates(tools.rate_file_path);
 
 var client = twilio("AC1cd2df05d94d3c79efc1b53da08e6bfa", "2ecc00df9bafcc8ba5f70a75d212b58c");
 
@@ -104,7 +104,7 @@ app.post('/update', function (req, res) {
   								"first_name"	: first_name	,
   					 			"last_name"		: last_name 	,
   					 			"phone_number"	: phone_number	,
-                  //"phone_rate" 	: parseFloat(rateExchange.getRateForANumber(phone_number)),
+                  "phone_rate" 	: parseFloat(rateExchange.getRateForANumber(phone_number)),
                   "translation_fees":translation_fees,
   					 			"profile" 		: profile		,
   					 			"credit"	: credit 	};
