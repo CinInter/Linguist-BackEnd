@@ -1,10 +1,10 @@
 var express     	= require('express');
 var bodyParser  	= require('body-parser');
 var pg          	= require('pg');
+var twilio        = require('twilio');
 var dbExchange		= require('./dbExchange.js');
 var tools 			  = require('./tools.js');
 var rateExchange 	= require('./rateExchange.js');
-var tropoExchange = require('./tropoExchange.js');
 
 var translation_fees_operator=0.5;
 
@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 
 dbExchange.addTablesToDB();
 //rateExchange.loadRates(tools.rate_file_path);
+
+var client = twilio("AC1cd2df05d94d3c79efc1b53da08e6bfa", "2ecc00df9bafcc8ba5f70a75d212b58c");
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
@@ -349,6 +351,31 @@ app.get('/call', function (req, res) {
       });
     });
   });
+});
+
+app.post('/call', function(request, response) {
+
+    var url = 'https://linguist-twilio.herokuapp.com/outbound/' + encodeURIComponent("+33627443544");
+
+    client.makeCall({to: "+33982289345", from: "+33627443544", url: url}, function(err, message) {
+        console.log(err);
+        if (err) {
+            response.status(500).send(err);
+        } else {
+            response.send({
+                message: 'Thank you! We will be calling you shortly.'
+            });
+        }
+    });
+});
+
+app.post('/outbound/:salesNumber', function(request, response) {
+    var salesNumber = request.params.salesNumber;
+    var twimlResponse = new twilio.TwimlResponse();
+
+    twimlResponse.say('Thanks for contacting our sales department. Our next available representative will take your call. ',{ voice: 'alice' });
+    twimlResponse.dial(salesNumber);
+    response.send(twimlResponse.toString());
 });
 
 /*
