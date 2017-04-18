@@ -42,7 +42,6 @@ app.post('/register', function (req, res) {
 								            "password"	: password	};
 
   //dbExchange.insert(tools.requestType.AUTHENTIFICATION,parameter,res);
-  console.log("faissal : " + process.env.DATABASE_URL);
   dbExchange.insert(tools.requestType.USER,parameter,res)
 });
 

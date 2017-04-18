@@ -125,7 +125,7 @@ function insertAuthentificationToken(parameter,res) {
 				console.error(err);
 				res.status(500).json({success: false, data: err});
 			} else{ 
-				tools.util.log('LOG INFO - dbExchange.js : The email ' + email + ' is added correctly');
+				console.log('LOG INFO - dbExchange.js : The email ' + email + ' is added correctly');
 				res.status(200).json({"success": true, "token": token}); 
 			}
 		});
@@ -183,7 +183,7 @@ function insertLanguage(parameter,res) {
 				console.error(err);
 				res.status(500).json({success: false, data: err});
 			} else{ 
-				tools.util.log('LOG INFO - dbExchange.js : The language ' + language + ' is added correctly');
+				console.log('LOG INFO - dbExchange.js : The language ' + language + ' is added correctly');
 				res.status(200).json({"success": true, "data": "added"}); 
 			}
 		});
