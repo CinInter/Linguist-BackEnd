@@ -1,4 +1,4 @@
-var rate_file_path='./rates.csv';
+var rate_file_path='./code/rates.csv';
 
 var requestType = {USER:0, AUTHENTIFICATION:1, IDENTIFICATON:2, LANGUAGE:3, TRANSLATOR:4, SESSION:5, CREDIT:6};
 //USER 				: Table containing all the users (clients, translators)
