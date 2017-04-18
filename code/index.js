@@ -11,7 +11,7 @@ var translation_fees_operator=0.5;
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
-
+dbExchange.dropAllTables();
 dbExchange.addTablesToDB();
 rateExchange.loadRates(tools.rate_file_path);
 var client = twilio("AC1cd2df05d94d3c79efc1b53da08e6bfa", "2ecc00df9bafcc8ba5f70a75d212b58c");

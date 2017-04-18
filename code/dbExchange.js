@@ -1,6 +1,39 @@
 var pg 		= require('pg');
 var tools 	= require('./tools.js');
 
+function dropAllTables() {
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query('delete from user_table', function(err, result) {
+			tools.util.log('LOG INFO - dbExchange.js : user_table table is droped');
+			done();
+		});
+	});
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query('delete from authentification_user_table', function(err, result) {
+			tools.util.log('LOG INFO - dbExchange.js : authentification_user_table table is droped');
+			done();
+		});
+	});
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query('delete from session_token_table', function(err, result) {
+			tools.util.log('LOG INFO - dbExchange.js : session_token_table table is droped');
+			done();
+		});
+	});
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query('delete from language_table', function(err, result) {
+			tools.util.log('LOG INFO - dbExchange.js : language_table table is droped');
+			done();
+		});
+	});
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query('delete from identification_user_table', function(err, result) {
+			tools.util.log('LOG INFO - dbExchange.js : identification_user_table table is droped');
+			done();
+		});
+	});
+}
+
 function addUserTableToDB() {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		client.query(	'create table if not exists user_table ('+
@@ -461,6 +494,7 @@ module.exports={
 		addLanguageTableToDB();
 		addSessionTokenTableToDB();
 	},
+	dropAllTables,
 	insert:function(type,parameter,res,callback){
 		switch(type) {
 			case tools.requestType.USER:
