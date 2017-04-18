@@ -48,7 +48,7 @@ class TestStringMethods(unittest.TestCase):
     			}))
     		tmp = {}
     		tmp_res = json.loads(res.raw_body)
-    		response_list.append(tmp_res['token'])
+    		#response_list.append(tmp_res['token'])
     		sucess=sucess&(tmp_res['success']==True)
     	self.assertEqual(sucess, 1)
 
@@ -122,9 +122,9 @@ class TestStringMethods(unittest.TestCase):
 if __name__ == '__main__':
 	suite = unittest.TestSuite()
 	suite.addTest(TestStringMethods('test_signup'))
-	#suite.addTest(TestStringMethods('test_register'))
+	suite.addTest(TestStringMethods('test_register'))
 	#suite.addTest(TestStringMethods('test_register_user_didnt_sign_up'))
-	#suite.addTest(TestStringMethods('test_login_user'))
-	#suite.addTest(TestStringMethods('test_update_user'))
-	#suite.addTest(TestStringMethods('test_add_languages_for_users'))
+	suite.addTest(TestStringMethods('test_login_user'))
+	suite.addTest(TestStringMethods('test_update_user'))
+	suite.addTest(TestStringMethods('test_add_languages_for_users'))
 	unittest.TextTestRunner(verbosity=2).run(suite)
