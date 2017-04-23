@@ -343,7 +343,7 @@ app.get('/call', function (req, res) {
         parameter_call.translation_fees=parameter.translation_fees;
         dbExchange.insert(tools.requestType.SESSION,parameter_call,res,function(token){
           parameter_call.token=token;
-          var url = 'https://linguist-twilio.herokuapp.com/outbound/' + encodeURIComponent(parameter_call.parameter_call.translator_phone);
+          var url = 'https://linguist-twilio.herokuapp.com/outbound/' + encodeURIComponent(parameter_call.translator_phone);
           client.makeCall({to: parameter_call.user_phone, from: parameter_call.translator_phone, url: url}, function(err, message) {
             console.log(err);
             if (err) {
